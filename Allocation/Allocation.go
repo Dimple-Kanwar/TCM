@@ -704,7 +704,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 			// Callers should close resp.Body when done reading from it
 			// Defer the closing of the body
 			defer resp2.Body.Close()
-
+			fmt.Println("stringArr[0]::" + stringArr[0])
 			tempSecurity.MTM = stringArr[0]
 			// Storing the Value percentage in the security ruleset data itself
 			tempSecurity.ValuePercentage = strconv.FormatFloat(rulesetFetched.Security[tempSecurity.CollateralForm]["Valuation Percentage"], 'f', 2, 64)
