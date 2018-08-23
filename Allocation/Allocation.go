@@ -125,7 +125,7 @@ func (slice SecurityArrayStruct) Less(i, j int) bool { // Sorting through the fi
 func (slice SecurityArrayStruct) Swap(i, j int) { slice[i], slice[j] = slice[j], slice[i] }
 
 
-// Use as Object.Rates["EUR"]
+// Use as Object.Quotes["EUR"]
 // Reference [Tested by Pranav] https://play.golang.org/p/j5Act-jN5C
 type CurrencyConversion struct {
 	Success  string             `json:"success"`
@@ -521,12 +521,12 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 
 	//-----------------------------------------------------------------------------
 
-	/*	Fetching Currency coversion rates in bast form of USD.
+	/*	Fetching Currency coversion Quotes in bast form of USD.
 		Sample Response as JSON:
 		{
 			"base": "USD",
 			"date": "2017-03-20",
-			"rates": {
+			"Quotes": {
 				"AUD": 1.2948,
 				"BGN": 1.819,
 				"BRL": 3.1079,
@@ -579,7 +579,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 	resp2, err2 := client2.Do(req2)
 	if err2 != nil {
 		fmt.Println("Do: ", err2)
-		errMsg := "{ \"message\" : \"Unable to fetch Currency Exchange Rates from: " + url2 + ".\", \"code\" : \"503\"}"
+		errMsg := "{ \"message\" : \"Unable to fetch Currency Exchange Quotes from: " + url2 + ".\", \"code\" : \"503\"}"
 		err2 = stub.SetEvent("errEvent", []byte(errMsg))
 		if err2 != nil {
 			return nil, err2
@@ -689,7 +689,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 			resp2, err2 := client2.Do(req2)
 			if err2 != nil {
 				fmt.Println("Do: ", err2)
-				errMsg := "{ \"message\" : \"Unable to fetch Market Rates from: " + url2 + ".\", \"code\" : \"503\"}"
+				errMsg := "{ \"message\" : \"Unable to fetch Market Quotes from: " + url2 + ".\", \"code\" : \"503\"}"
 				err2 = stub.SetEvent("errEvent", []byte(errMsg))
 				if err2 != nil {
 					return nil, err2
@@ -722,7 +722,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 				fmt.Println(errBool)
 			}
 
-			_rate := ConversionRate.Rates[tempSecurity.Currency]
+			_rate := ConversionRate.Quotes[tempSecurity.Currency]
 			if tempSecurity.Currency == RQVCurrency {
 				_rate = 1
 			}
@@ -815,7 +815,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 							fmt.Println(errBool)
 						}
 						fmt.Println("mtm: ",temp)
-						_rate := ConversionRate.Rates[valueSecurity.Currency]
+						_rate := ConversionRate.Quotes[valueSecurity.Currency]
 						if valueSecurity.Currency == RQVCurrency {
 							_rate = 1
 						}
@@ -876,7 +876,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 					fmt.Println(errBool)
 				}
 				fmt.Println("mtm: ",temp)
-				_rate := ConversionRate.Rates[tempSecurity.Currency]
+				_rate := ConversionRate.Quotes[tempSecurity.Currency]
 				if tempSecurity.Currency == RQVCurrency {
 					_rate = 1
 				}
@@ -1334,7 +1334,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 					if errBool5 != nil {
 						fmt.Println(errBool5)
 					}
-					exchange_rate := ConversionRate.Rates[valueSecurity.Currency]
+					exchange_rate := ConversionRate.Quotes[valueSecurity.Currency]
 					if valueSecurity.Currency == RQVCurrency {
 						exchange_rate = 1
 					}
