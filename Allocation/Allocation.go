@@ -558,8 +558,8 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 			}
 		}
 	*/
-	url2 := fmt.Sprintf("http://api.fixer.io/latest?base=" + RQVCurrency)
-
+	//url2 := fmt.Sprintf("http://api.fixer.io/latest?base=" + RQVCurrency)
+	url2 := "http://apilayer.net/api/live?access_key=9f8b2757972bdcd15091e90726a4b9cc&source=USD&format=1"
 	// Build the request
 	req2, err2 := http.NewRequest("GET", url2, nil)
 	if err2 != nil {
@@ -587,7 +587,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 
 	// Varaible ConversionRate to be filled with the data from the JSON
 	var ConversionRate CurrencyConversion
-
+	
 	// Use json.Decode for reading streams of JSON data and store it
 	if err := json.NewDecoder(resp2.Body).Decode(&ConversionRate); err != nil {
 		fmt.Println(err)
