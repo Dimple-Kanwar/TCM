@@ -722,7 +722,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 				fmt.Println(errBool)
 			}
 
-			_rate := ConversionRate.Quotes[tempSecurity.Currency]
+			_rate := ConversionRate.Quotes["USD"+tempSecurity.Currency]
 			if tempSecurity.Currency == RQVCurrency {
 				_rate = 1
 			}
@@ -815,7 +815,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 							fmt.Println(errBool)
 						}
 						fmt.Println("mtm: ",temp)
-						_rate := ConversionRate.Quotes[valueSecurity.Currency]
+						_rate := ConversionRate.Quotes["USD"+valueSecurity.Currency]
 						if valueSecurity.Currency == RQVCurrency {
 							_rate = 1
 						}
@@ -876,7 +876,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 					fmt.Println(errBool)
 				}
 				fmt.Println("mtm: ",temp)
-				_rate := ConversionRate.Quotes[tempSecurity.Currency]
+				_rate := ConversionRate.Quotes["USD"+tempSecurity.Currency]
 				if tempSecurity.Currency == RQVCurrency {
 					_rate = 1
 				}
@@ -1334,7 +1334,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 					if errBool5 != nil {
 						fmt.Println(errBool5)
 					}
-					exchange_rate := ConversionRate.Quotes[valueSecurity.Currency]
+					exchange_rate := ConversionRate.Quotes["USD"+valueSecurity.Currency]
 					if valueSecurity.Currency == RQVCurrency {
 						exchange_rate = 1
 					}
