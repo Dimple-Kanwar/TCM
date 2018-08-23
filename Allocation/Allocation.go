@@ -587,7 +587,7 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 	}
 
 	fmt.Println("The SecurityRuleset response is::" + strconv.Itoa(resp2.StatusCode))
-	fmt.Println("The currency exchange rate response is::" ,resp2)
+	fmt.Println("The currency exchange rate response is::" ,resp2.body)
 	// Varaible ConversionRate to be filled with the data from the JSON
 	var ConversionRate CurrencyConversion
 	
