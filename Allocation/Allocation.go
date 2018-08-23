@@ -128,10 +128,10 @@ func (slice SecurityArrayStruct) Swap(i, j int) { slice[i], slice[j] = slice[j],
 // Use as Object.Quotes["EUR"]
 // Reference [Tested by Pranav] https://play.golang.org/p/j5Act-jN5C
 type CurrencyConversion struct {
-	Success  string             `json:"success"`
+	Success  bool             `json:"success"`
 	Terms  string             `json:"terms"`
 	Privacy  string             `json:"Privacy"`
-	Timestamp  string             `json:"timestamp"`
+	Timestamp  int             `json:"timestamp"`
 	Source  string             `json:"source"`
 	Quotes map[string]float64 `json:"quotes"`
 }
@@ -587,10 +587,10 @@ func (t *ManageAllocations) start_allocation(stub shim.ChaincodeStubInterface, a
 	}
 
 	fmt.Println("The SecurityRuleset response is::" + strconv.Itoa(resp2.StatusCode))
-	fmt.Println("The currency exchange rate response is::" ,resp2.Body)
+	fmt.Println(resp2)
 	// Varaible ConversionRate to be filled with the data from the JSON
 	var ConversionRate CurrencyConversion
-	
+	fmt.Println("The rate body response is::" ,resp2.Body)
 	// Use json.Decode for reading streams of JSON data and store it
 	if err := json.NewDecoder(resp2.Body).Decode(&ConversionRate); err != nil {
 		fmt.Println(err)
